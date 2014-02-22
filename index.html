@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pong Game</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="js/jq.js"></script>
+    <script type="text/javascript" src="js/impact/impact.js"></script>
+    <script type="text/javascript" src="js/game/main.js"></script>
+    <script type="text/javascript">
+        //function to display popup when a user selects a game
+        function pop(message, yesBtnText, noButtonAction, noBtnText) {
+            $('#popup-shade').show();
+            $('#popup #message').text(message);
+            $('#popup').show('slow');
+            $('.yesbtn').text(yesBtnText);
+            $('.yesbtn').one('click', function () {
+                hidepop();
+                if (method === 'resetLevel') {
+                    ig.game.resetLevel();
+                } else if (method === 'goToNextLevel') {
+                    ig.game.goToNextLevel();
+                }
+
+            });
+            $('.nobtn').text(noBtnText);
+            $('.nobtn').click(noButtonAction);
+
+        };
+
+        //function to hide popup
+        function hidepop() {
+
+            $('#popup').fadeOut('fast');
+            $('#popup-shade').hide();
+
+        };
+
+		</script>
+</head>
+<body>
+    <div id="popup" style="display: none;">
+        <h1><span id="message" style="color: #1e69de; color: rgba(30,105,222,1);"></span></h1>
+        <span class="yesbtn"></span>&nbsp; <span class="nobtn"></span>
+    </div>
+    <div id="popup-shade" style="display: none;"></div>
+    <div id="game">
+        <canvas id="canvas"></canvas>
+        <div id="hud">
+            <div id="playerLives"></div>
+            <div class="button" id="buttonLeft"></div>
+            <div class="button" id="buttonRight"></div>
+            <div id="cpuLives"></div>
+        </div>
+    </div>
+</body>
+</html>
